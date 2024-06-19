@@ -1,6 +1,11 @@
 package campaign
 
-import "time"
+import (
+	"errors"
+	"time"
+
+	"github.com/rs/xid"
+)
 
 type Contact struct {
 	Email string
@@ -14,7 +19,15 @@ type Campaign struct {
 	Contacts  []Contact
 }
 
-func NewCampaign(name string, content string, emails []string) *Campaign {
+func NewCampaign(name string, content string, emails []string) (*Campaign, error) {
+	if name == "" {
+		return nil, errors.New("NameRequired")
+	} else if content == "" {
+		return nil, errors.New("ContentRequired")
+	} else if len(emails) == 0 {
+		return nil, errors.New("ContactsRequired")
+	}
+
 	contacts := make([]Contact, len(emails))
 
 	for index, email := range emails {
@@ -22,10 +35,10 @@ func NewCampaign(name string, content string, emails []string) *Campaign {
 	}
 
 	return &Campaign{
-		ID:        "1",
+		ID:        xid.New().String(),
 		Name:      name,
 		Content:   content,
 		CreatedOn: time.Now(),
 		Contacts:  contacts,
-	}
+	}, nil
 }
