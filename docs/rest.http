@@ -1,7 +1,10 @@
 POST http://localhost:8181/campaigns
 
 {
-    "Name": "testando",
+    "Name": "testando 03",
     "Content": "change password",
-    "emails": ["test@gmail.com"]
+    "emails": ["test", "test03@gmail.com"]
 }
+
+###
+GET http://localhost:8181/campaigns

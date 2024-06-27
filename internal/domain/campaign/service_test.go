@@ -28,6 +28,10 @@ func (r *repositoryMock) Create(campaign *Campaign) error {
 	return args.Error(0)
 }
 
+func (r *repositoryMock) Get() ([]Campaign, error) {
+	return nil, nil
+}
+
 func TestCreateCampaign(t *testing.T) {
 	assert := assert.New(t)
 	repositoryMock := new(repositoryMock)
