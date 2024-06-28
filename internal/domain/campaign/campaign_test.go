@@ -73,3 +73,11 @@ func TestNewCampaignMustValidateContactsMin(t *testing.T) {
 
 	assert.Equal("contacts is required with min 1", err.Error())
 }
+
+func TestNewCampaignMustStatusStartWithPending(t *testing.T) {
+	assert := assert.New(t)
+
+	campaign, _ := NewCampaign(name, content, contacts)
+
+	assert.Equal(Pending, campaign.Status)
+}
