@@ -11,7 +11,7 @@ import (
 )
 
 var (
-	service     = Service{}
+	service     = ServiceImpl{}
 	newCampaign = contracts.NewCampaignDto{
 		Name:    "Test Y",
 		Content: "Content",

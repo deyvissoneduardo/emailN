@@ -12,8 +12,8 @@ import (
 func main() {
 	router := chi.NewRouter()
 
-	service := campaign.Service{Repository: &database.CampaignRepository{}}
-	handler := endpoints.Handler{CampaignService: service}
+	service := campaign.ServiceImpl{Repository: &database.CampaignRepository{}}
+	handler := endpoints.Handler{CampaignService: &service}
 
 	router.Post("/campaigns", endpoints.HandlerError(handler.CampaignPost))
 	router.Get("/campaigns", endpoints.HandlerError(handler.CampaignGet))
