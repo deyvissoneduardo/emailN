@@ -12,7 +12,9 @@ import (
 func main() {
 	router := chi.NewRouter()
 
-	service := campaign.ServiceImpl{Repository: &database.CampaignRepository{}}
+	db := database.NewBD()
+
+	service := campaign.ServiceImpl{Repository: &database.CampaignRepository{Db: db}}
 	handler := endpoints.Handler{CampaignService: &service}
 
 	router.Post("/campaigns", endpoints.HandlerError(handler.CampaignPost))
