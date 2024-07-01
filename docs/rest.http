@@ -7,4 +7,4 @@ POST http://localhost:8181/campaigns
 }
 
 ###
-GET http://localhost:8181/campaigns
+GET http://localhost:8181/campaigns/cq1dtodj8i9telddm0vg
