@@ -1,10 +1,16 @@
 POST http://localhost:8181/campaigns
 
 {
-    "Name": "testando 03",
-    "Content": "change password",
-    "emails": ["test", "test03@gmail.com"]
+    "Name": "Adriana",
+    "Content": "Dourado",
+    "emails": ["drica@gmail.com"]
 }
 
 ###
-GET http://localhost:8181/campaigns/cq1dtodj8i9telddm0vg
+GET http://localhost:8181/campaigns/cq24hgdj8i9ucuku59l0
+
+###
+PATCH http://localhost:8181/campaigns/cancel/cq1fd75j8i9kpu9bg9eg
+
+###
+DELETE http://localhost:8181/campaigns/delete/cq24hgdj8i9ucuku59l0
