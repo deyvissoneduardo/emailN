@@ -1,16 +1,16 @@
 POST http://localhost:8181/campaigns
 
 {
-    "Name": "Adriana",
-    "Content": "Dourado",
-    "emails": ["drica@gmail.com"]
+    "Name": "Deyvisson",
+    "Content": "Eduardo",
+    "emails": ["drica@gmail.com", "eduardo@gmail.com"]
 }
 
 ###
-GET http://localhost:8181/campaigns/cq24hgdj8i9ucuku59l0
+GET http://localhost:8181/campaigns/cq2ov4tj8i9thggr1mdg
 
 ###
 PATCH http://localhost:8181/campaigns/cancel/cq1fd75j8i9kpu9bg9eg
 
 ###
-DELETE http://localhost:8181/campaigns/delete/cq24hgdj8i9ucuku59l0
+DELETE http://localhost:8181/campaigns/delete/cq2p80lj8i9ugv64944g
