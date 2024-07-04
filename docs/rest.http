@@ -7,10 +7,10 @@ POST http://localhost:8181/campaigns
 }
 
 ###
-GET http://localhost:8181/campaigns/cq2ov4tj8i9thggr1mdg
+GET http://localhost:8181/campaigns/cq2ov4tj8i9thggr1md
 
 ###
-PATCH http://localhost:8181/campaigns/cancel/cq1fd75j8i9kpu9bg9eg
+PATCH http://localhost:8181/campaigns/cancel/cq1fd75j8i9kpu9bg9
 
 ###
 DELETE http://localhost:8181/campaigns/delete/cq2p80lj8i9ugv64944g
