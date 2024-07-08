@@ -14,22 +14,27 @@ services:
       - ./data:/var/lib/postgresql/data
     networks:
       - backend
-
+  
   keycloak:
-    image: quay.io/keycloak/keycloak:latest
-    container_name: keycloak
-    command: start-dev
+    image: quay.io/keycloak/keycloak
     ports:
-      - "8082:8080"
+      - "8080:8080"
     environment:
-      KC_HOSTNAME: localhost
-      KC_HOSTNAME_PORT: 8080
-      KEYCLOAK_ADMIN: admin
-      KEYCLOAK_ADMIN_PASSWORD: admin
-    command: start-dev
+      - KEYCLOAK_ADMIN=admin
+      - KEYCLOAK_ADMIN_PASSWORD=admin
+    command: ["start-dev"]
+    volumes:
+      - keycloak_data:/opt/keycloak/data
     networks:
-      - backend
+      - keycloak_network
 
 networks:
   backend:
     driver: bridge
+  keycloak_network:
+    driver: bridge
+
+volumes:
+  keycloak_data:
+    driver: local
+

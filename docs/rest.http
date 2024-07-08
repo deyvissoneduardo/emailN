@@ -14,3 +14,15 @@ PATCH http://localhost:8181/campaigns/cancel/cq1fd75j8i9kpu9bg9
 
 ###
 DELETE http://localhost:8181/campaigns/delete/cq2p80lj8i9ugv64944g
+
+### KEYCLOAK
+POST http://localhost:8080/realms/provider/protocol/openid-connect/token
+Content-Type: application/x-www-form-urlencoded
+
+client_id=emailn&client_secret=vSyhL62XmRs7gNyGqLr4sYTTwA6Gjrko&grant_type=client_credentials
+
+###
+POST http://localhost:8080/realms/provider/protocol/openid-connect/token
+Content-Type: application/x-www-form-urlencoded
+
+client_id=emailn_users&username=teste@gmail.com&password=123qwe&grant_type=password
