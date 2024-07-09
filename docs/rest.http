@@ -1,28 +1,40 @@
-POST http://localhost:8181/campaigns
+@url = http://localhost:8181
+@identity_provider = http://localhost:8080
+
+###
+
+GET {{url}}/test
+
+###
+# @name campaign_create
+POST  {{url}}/campaigns
+Authorization: Bearer {{access_token}}
 
 {
-    "Name": "Deyvisson",
-    "Content": "Eduardo",
-    "emails": ["drica@gmail.com", "eduardo@gmail.com"]
+    "Name": "change",
+    "Content": "change password",
+	"emails":  ["henrique@teste.com.br", "henrique2@teste.com.br", "henrique@teste.com.br"]
 }
 
 ###
-GET http://localhost:8181/campaigns/cq2ov4tj8i9thggr1md
+@campaign_id = {{campaign_create.response.body.id}}
 
 ###
-PATCH http://localhost:8181/campaigns/cancel/cq1fd75j8i9kpu9bg9
+
+GET {{url}}/campaigns/{{campaign_id}}
+Authorization: Bearer {{access_token}}
 
 ###
-DELETE http://localhost:8181/campaigns/delete/cq2p80lj8i9ugv64944g
 
-### KEYCLOAK
-POST http://localhost:8080/realms/provider/protocol/openid-connect/token
+DELETE {{url}}/campaigns/delete/{{campaign_id}}
+Authorization: Bearer {{access_token}}
+
+###
+# @name token
+POST {{identity_provider}}/realms/provider/protocol/openid-connect/token
 Content-Type: application/x-www-form-urlencoded
 
-client_id=emailn&client_secret=vSyhL62XmRs7gNyGqLr4sYTTwA6Gjrko&grant_type=client_credentials
+client_id=emailn&username=teste@gmail.com&password=123qwe&grant_type=password
 
 ###
-POST http://localhost:8080/realms/provider/protocol/openid-connect/token
-Content-Type: application/x-www-form-urlencoded
-
-client_id=emailn_users&username=teste@gmail.com&password=123qwe&grant_type=password
+@access_token = {{token.response.body.access_token}}
