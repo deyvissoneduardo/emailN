@@ -11,9 +11,9 @@ POST  {{url}}/campaigns
 Authorization: Bearer {{access_token}}
 
 {
-    "Name": "change",
-    "Content": "change password",
-	"emails":  ["henrique@teste.com.br", "henrique2@teste.com.br", "henrique@teste.com.br"]
+    "Name": "Deyvisson",
+    "Content": "Adriana",
+	"emails":  ["drica@teste.com.br", "eduardo@teste.com.br", "brenda@teste.com.br"]
 }
 
 ###

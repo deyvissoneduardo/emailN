@@ -12,6 +12,9 @@ func (h *Handler) CampaignPost(w http.ResponseWriter, r *http.Request) (interfac
 
 	render.DecodeJSON(r.Body, &request)
 
+	email := r.Context().Value("email").(string)
+	request.CreateBy = email
+
 	id, err := h.CampaignService.Create(request)
 
 	return map[string]string{"id": id}, http.StatusCreated, err
