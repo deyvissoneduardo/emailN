@@ -2,13 +2,14 @@ package database
 
 import (
 	"emailn/internal/domain/campaign"
+	"os"
 
 	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
 )
 
 func NewBD() *gorm.DB {
-	dsn := "host=localhost user=admin password=admin dbname=emailn port=5434 sslmode=disable"
+	dsn := os.Getenv("DATABASE")
 	db, err := gorm.Open(postgres.Open(dsn), &gorm.Config{})
 
 	if err != nil {
