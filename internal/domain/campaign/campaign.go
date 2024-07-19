@@ -64,3 +64,7 @@ func (c *Campaign) Cancel() {
 func (c *Campaign) Delete() {
 	c.Status = Deleted
 }
+
+func (c *Campaign) Done() {
+	c.Status = Done
+}

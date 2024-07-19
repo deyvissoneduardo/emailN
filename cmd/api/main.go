@@ -4,7 +4,6 @@ import (
 	"emailn/internal/domain/campaign"
 	"emailn/internal/endpoints"
 	"emailn/internal/infrastructure/database"
-	"emailn/internal/infrastructure/mail"
 	"log"
 	"net/http"
 
@@ -17,11 +16,6 @@ func main() {
 	err := godotenv.Load()
 	if err != nil {
 		log.Fatal("Error loading .env file")
-	}
-
-	errMail := mail.SendMail()
-	if errMail != nil {
-		log.Fatal(errMail.Error())
 	}
 
 	router := chi.NewRouter()
