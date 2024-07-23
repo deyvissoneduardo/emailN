@@ -10,6 +10,7 @@ type Service interface {
 	Create(newCampaign contracts.NewCampaignDto) (string, error)
 	GetById(id string) (*contracts.CampaignResponse, error)
 	Delete(id string) error
+	Start(id string) error
 }
 
 type ServiceImpl struct {

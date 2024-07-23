@@ -4,6 +4,7 @@ import (
 	"emailn/internal/domain/campaign"
 	"emailn/internal/endpoints"
 	"emailn/internal/infrastructure/database"
+	"emailn/internal/infrastructure/mail"
 	"log"
 	"net/http"
 
@@ -27,7 +28,7 @@ func main() {
 
 	db := database.NewBD()
 
-	service := campaign.ServiceImpl{Repository: &database.CampaignRepository{Db: db}}
+	service := campaign.ServiceImpl{Repository: &database.CampaignRepository{Db: db}, SendEmail: mail.SendMail}
 	handler := endpoints.Handler{CampaignService: &service}
 
 	router.Get("/test", func(w http.ResponseWriter, r *http.Request) {
@@ -39,6 +40,7 @@ func main() {
 		router.Post("/", endpoints.HandlerError(handler.CampaignPost))
 		router.Get("/{id}", endpoints.HandlerError(handler.CampaignGetById))
 		router.Delete("/delete/{id}", endpoints.HandlerError(handler.CampaignDelete))
+		router.Patch("/start/{id}", endpoints.HandlerError(handler.CampaignStart))
 	})
 
 	http.ListenAndServe(":8181", router)

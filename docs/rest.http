@@ -13,7 +13,7 @@ Authorization: Bearer {{access_token}}
 {
     "Name": "Deyvisson",
     "Content": "Adriana",
-	"emails":  ["drica@teste.com.br", "eduardo@teste.com.br", "brenda@teste.com.br"]
+	"emails":  ["deyvissonarouche@gmail.com"]
 }
 
 ###
@@ -27,6 +27,11 @@ Authorization: Bearer {{access_token}}
 ###
 
 DELETE {{url}}/campaigns/delete/{{campaign_id}}
+Authorization: Bearer {{access_token}}
+
+###
+
+PATCH {{url}}/campaigns/start/{{campaign_id}}
 Authorization: Bearer {{access_token}}
 
 ###
