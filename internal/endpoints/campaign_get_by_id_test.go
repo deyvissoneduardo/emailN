@@ -2,10 +2,8 @@ package endpoints
 
 import (
 	"emailn/internal/contracts"
-	internalmock "emailn/internal/test/internal_mock"
 	"errors"
 	"net/http"
-	"net/http/httptest"
 	"testing"
 
 	"github.com/stretchr/testify/assert"
@@ -13,36 +11,32 @@ import (
 )
 
 func TestCampaignsGetByIdShouldReturnCampaign(t *testing.T) {
-	assert := assert.New(t)
+	setup()
+	campaignId := "343"
 	campaign := contracts.CampaignResponse{
-		ID:      "343",
+		ID:      campaignId,
 		Name:    "Test",
 		Content: "Hi!",
 		Status:  "Pending",
 	}
-	service := new(internalmock.CampaignServiceMock)
 	service.On("GetById", mock.Anything).Return(&campaign, nil)
-	handler := Handler{CampaignService: service}
-	req, _ := http.NewRequest("GET", "/", nil)
-	rr := httptest.NewRecorder()
+	req, rr := newHttpTest("GET", "/", nil)
+	req = addParameter(req, "id", campaignId)
 
 	response, status, _ := handler.CampaignGetById(rr, req)
 
-	assert.Equal(200, status)
-	assert.Equal(campaign.ID, response.(*contracts.CampaignResponse).ID)
-	assert.Equal(campaign.Name, response.(*contracts.CampaignResponse).Name)
+	assert.Equal(t, http.StatusOK, status)
+	assert.Equal(t, campaign.ID, response.(*contracts.CampaignResponse).ID)
+	assert.Equal(t, campaign.Name, response.(*contracts.CampaignResponse).Name)
 }
 
 func TestCampaignsGetByIdShouldReturnErrorWhenSomethingWrong(t *testing.T) {
-	assert := assert.New(t)
-	service := new(internalmock.CampaignServiceMock)
+	setup()
 	errExpected := errors.New("something wrong")
 	service.On("GetById", mock.Anything).Return(nil, errExpected)
-	handler := Handler{CampaignService: service}
-	req, _ := http.NewRequest("GET", "/", nil)
-	rr := httptest.NewRecorder()
+	req, rr := newHttpTest("GET", "/", nil)
 
 	_, _, errReturned := handler.CampaignGetById(rr, req)
 
-	assert.Equal(errExpected.Error(), errReturned.Error())
+	assert.Equal(t, errExpected.Error(), errReturned.Error())
 }

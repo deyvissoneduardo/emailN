@@ -16,7 +16,7 @@ func TestHanlderErrorWhenEndpointRetunrsInternalError(t *testing.T) {
 	assert := assert.New(t)
 
 	endpoints := func(w http.ResponseWriter, r *http.Request) (interface{}, int, error) {
-		return nil, 500, internalerrors.ErrInternal
+		return nil, http.StatusInternalServerError, internalerrors.ErrInternal
 	}
 
 	handlerFunc := HandlerError(endpoints)
@@ -31,7 +31,7 @@ func TestHanlderErrorWhenEndpointRetunrsDomainError(t *testing.T) {
 	assert := assert.New(t)
 
 	endpoints := func(w http.ResponseWriter, r *http.Request) (interface{}, int, error) {
-		return nil, 400, errors.New("Domain Error")
+		return nil, http.StatusBadRequest, errors.New("Domain Error")
 	}
 
 	handlerFunc := HandlerError(endpoints)
@@ -50,7 +50,7 @@ func TestHanlderErrorWhenEndpointRetunrsObjectAndStatus(t *testing.T) {
 	}
 	objExpected := bodyForTest{Id: 2}
 	endpoints := func(w http.ResponseWriter, r *http.Request) (interface{}, int, error) {
-		return objExpected, 201, nil
+		return objExpected, http.StatusCreated, nil
 	}
 
 	handlerFunc := HandlerError(endpoints)
