@@ -10,7 +10,6 @@ import (
 func SendMail(campaign *campaign.Campaign) error {
 
 	// setupMail := gomail.NewDialer("smtp.gmail.com", 587, "test@gmail.com", "123456")
-	setupMail := gomail.NewDialer("smtp.gmail.com", 587, "deyvissoneduardo22@gmail.com", "eueudvuvzreqpfqb")
 
 	var emails []string
 	for _, conctact := range campaign.Contacts {
