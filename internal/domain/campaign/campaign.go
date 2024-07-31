@@ -61,20 +61,25 @@ func NewCampaign(name string, content string, emails []string, createBy string) 
 
 func (c *Campaign) Cancel() {
 	c.Status = Canceled
+	c.UpdatedOn = time.Now()
 }
 
 func (c *Campaign) Delete() {
 	c.Status = Deleted
+	c.UpdatedOn = time.Now()
 }
 
 func (c *Campaign) Done() {
 	c.Status = Done
+	c.UpdatedOn = time.Now()
 }
 
 func (c *Campaign) Fail() {
 	c.Status = Fail
+	c.UpdatedOn = time.Now()
 }
 
 func (c *Campaign) Started() {
 	c.Status = Started
+	c.UpdatedOn = time.Now()
 }
